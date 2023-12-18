@@ -2,6 +2,9 @@ package pl.ktarka.students.controler;
 
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.StringUtils;
@@ -74,4 +77,20 @@ public class StudentController {
             return ResponseEntity.ok(studentRepository.save(studentFromDb));
         }).orElseGet(() -> ResponseEntity.notFound().build());
     }
+/*
+    @GetMapping("/lastname")
+    public List<Student> findStudent(@RequestParam String lastName, @RequestParam int numberOfPage) {
+        Pageable pageable = PageRequest.of(numberOfPage, 2, Sort.by("firstName"));
+        return studentRepository.findAllByLastName(lastName, pageable);
+    }
+
+    @GetMapping("/find")
+    public List<Student> findStudent2(@RequestParam String lastName, @RequestParam String firstName) {
+        return studentRepository.findByLastNameAndFirstNameIsNotLikeAllIgnoreCase(lastName, firstName);
+    }
+
+    @GetMapping("/findMarian")
+    public List<Student> findMarian() {
+        return studentRepository.findStudentsWithNameMarian();
+    }*/
 }
